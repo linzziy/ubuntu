@@ -37,3 +37,4 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:${{ env.DATE_TAG }}
             ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:22
