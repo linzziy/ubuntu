@@ -1,14 +1,13 @@
 FROM ubuntu:22.04
 
-LABEL org.opencontainers.image.source="https://github.com/linzziy/ubuntu"
-
 ENV TZ=Asia/Shanghai \
     SSH_USER=ubuntu \
-    SSH_PASSWORD=!23456
+    SSH_PASSWORD=!23465
 
 COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 COPY deamon.sh /usr/local/sbin/deamon
+COPY tunx /usr/local/sbin/tunx
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
@@ -19,6 +18,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     chmod +x /entrypoint.sh; \
     chmod +x /usr/local/sbin/reboot; \
     chmod +x /usr/local/sbin/deamon; \
+    chmod +x /usr/local/sbin/tunx; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone
 
