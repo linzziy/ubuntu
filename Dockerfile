@@ -2,12 +2,13 @@ FROM ubuntu:22.04
 
 ENV TZ=Asia/Shanghai \
     SSH_USER=ubuntu \
-    SSH_PASSWORD=!23465
+    SSH_PASSWORD=!23465 \
+    CDN_NAME=hf0
 
 COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 COPY deamon.sh /usr/local/sbin/deamon
-COPY tunx /usr/local/sbin/tunx
+COPY mesh /usr/local/sbin/tunx
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
