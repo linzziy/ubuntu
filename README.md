@@ -25,3 +25,11 @@ sudo chown -R $USER:$USER /home/$USER
 curl -sk -o ~/.bashrc https://raw.githubusercontent.com/linzziy/ubuntu/refs/heads/main/.bashrc
 curl -sk -o ~/.profile https://raw.githubusercontent.com/linzziy/ubuntu/refs/heads/main/.profile
 ```
+
+> home目录自定义启动`/home/ubuntu/.boot_`
+
+```sh
+#!/bin/sh
+cd /home/ubuntu/uptime-kuma
+exec /home/ubuntu/.nvm/versions/node/v20.19.5/bin/node server/server.js
+```
