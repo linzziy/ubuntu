@@ -25,9 +25,8 @@ RUN mkdir -p /etc/service/tunx && \
     echo 'exec tunx -cdn-itai $CDN_NAME 2>&1' >> /etc/service/tunx/run && \
     chmod +x /etc/service/tunx/run
 
-RUN mkdir -p /etc/service/init && \
-    echo '#!/bin/sh' > /home/$HOME_USER/.boot_ && \
-    echo 'exit 0' > /home/$HOME_USER/.boot_ && \
+RUN echo '#!/bin/sh' > /home/$HOME_USER/.boot_ && \
+    echo 'exit 0' >> /home/$HOME_USER/.boot_ && \
     chmod -x /home/$HOME_USER/.boot_
 
 RUN export DEBIAN_FRONTEND=noninteractive; \
