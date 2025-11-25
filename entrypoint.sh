@@ -1,12 +1,10 @@
 #!/usr/bin/env sh
-
-useradd -m -s /bin/bash $SSH_USER
-echo "$SSH_USER:$SSH_PASSWORD" | chpasswd
-usermod -aG sudo $SSH_USER
-echo "$SSH_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/init-users
+runsvdir /etc/service &
+usermod -aG sudo $HOME_USER
+echo "$HOME_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/init-users
 echo 'PermitRootLogin no' > /etc/ssh/sshd_config.d/my_sshd.conf
-echo 'booting...' && [ -f /home/ubuntu/boot.sh ] && chmod +x /home/ubuntu/boot.sh && /home/ubuntu/boot.sh &
-/usr/sbin/sshd
-tunx -cdn-itai $CDN_NAME &
+if [ -x "/home/$HOME_USER/.boot_" ]; then
+    mkdir -p /etc/service/init && ln -sf "/home/$HOME_USER/.boot_" /etc/service/init/run
+fi
 
 exec "$@"
